@@ -1,11 +1,11 @@
 from pathlib import Path
 
 def test_generate_iv(iv_path):
-    from AutoOrgan.utils import generate_iv
+    from nnUnet_deploy.utils import generate_iv
     generate_iv(iv_path)
 
 def test_OnnxCryptor(model_path, encrypted_model_path,iv_path):
-    from AutoOrgan.utils import OnnxCryptor
+    from nnUnet_deploy.utils import OnnxCryptor
     
     with open(iv_path, 'rb') as f:
             iv = f.read()
@@ -19,11 +19,11 @@ def test_OnnxCryptor(model_path, encrypted_model_path,iv_path):
     # model_stream = BytesIO(model_bytes)
 
 def test_package_files(output_path, *file_paths):
-    from AutoOrgan.utils import package_files
+    from nnUnet_deploy.utils import package_files
     package_files(output_path, *file_paths)
 
 def test_JWTUtils_once():
-    from AutoOrgan.utils import JWTUtils
+    from nnUnet_deploy.utils import JWTUtils
     private_key, public_key, private_pem, public_pem = JWTUtils.generate_key_pair()
     private_pem = private_pem.decode("utf-8")
     public_pem = public_pem.decode("utf-8")
@@ -32,13 +32,13 @@ def test_JWTUtils_once():
         f.write(f"private_key={private_pem.strip()}\n")
 
 def test_generate_jwt_token(expiration_minutes):
-    from AutoOrgan.utils import JWTUtils,extract_private_key
+    from nnUnet_deploy.utils import JWTUtils,extract_private_key
     private_pem = extract_private_key("keys.txt")
     token = JWTUtils.generate_jwt_token(private_pem, expiration_minutes=expiration_minutes)
     return token
 
 def test_verify(token):
-    from AutoOrgan.utils import JWTUtils,extract_public_key
+    from nnUnet_deploy.utils import JWTUtils,extract_public_key
     # public_pem = extract_public_key("keys.txt")
     public_pem = """-----BEGIN PUBLIC KEY-----
                 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4MTVlyZ47mlywsb/Tu08

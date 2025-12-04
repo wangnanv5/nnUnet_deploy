@@ -12,10 +12,10 @@ import SimpleITK as sitk
 from io import BytesIO
 from pathlib import Path
 
-from AutoOrgan.munch import DefaultMunch
-from AutoOrgan.infer import OnnxInfer
-from AutoOrgan.preprocess import preprocess
-from AutoOrgan.utils import OnnxCryptor
+from nnUnet_deploy.munch import DefaultMunch
+from nnUnet_deploy.infer import OnnxInfer
+from nnUnet_deploy.preprocess import preprocess
+from nnUnet_deploy.utils import OnnxCryptor
 
 class Servicer():
     def __init__(self,config:dict):

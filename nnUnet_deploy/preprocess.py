@@ -1,6 +1,6 @@
 import cupy as cp
 import numpy as np
-from AutoOrgan.munch import DefaultMunch
+from nnUnet_deploy.munch import DefaultMunch
 from functools import lru_cache
 from skimage.transform import resize
 from scipy.ndimage import map_coordinates,gaussian_filter

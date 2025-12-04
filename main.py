@@ -2,8 +2,8 @@ import sys
 import argparse
 from pathlib import Path
 
-from AutoOrgan.utils import JWTUtils
-from AutoOrgan.servicer import Servicer
+from nnUnet_deploy.utils import JWTUtils
+from nnUnet_deploy.servicer import Servicer
 
 def get_parser():
     parser = argparse.ArgumentParser(description="AutoOrgan commercial closed-source version.")
@@ -62,8 +62,7 @@ def verify_license(license_path : Path) -> bool:
 
 def main_entry():
     args = get_parser()
-    if verify_license(Path(args.license)):
-        Servicer(args).run_infer()
+    Servicer(args).run_infer()
         
 if __name__ == '__main__':
     main_entry()
